@@ -1,4 +1,4 @@
-use rusqlite::{params, Connection, Result, Error};
+use rusqlite::{params, Connection, Result};
 use structopt::StructOpt;
 
 #[derive(StructOpt)]
@@ -12,19 +12,11 @@ enum Command {
     #[structopt(name = "query")]
     Query,
     #[structopt(name = "insert")]
-    Insert {
-        id: String,
-        age: i64,
-    },
+    Insert { id: String, age: i64 },
     #[structopt(name = "update")]
-    Update {
-        id: String,
-        age: i64,
-    },
+    Update { id: String, age: i64 },
     #[structopt(name = "delete")]
-    Delete {
-        id: String,
-    },
+    Delete { id: String },
 }
 
 fn create_table(conn: &Connection) -> Result<()> {
@@ -47,9 +39,8 @@ fn main() -> Result<()> {
     match args.cmd {
         Command::Query => {
             let mut stmt = conn.prepare("SELECT id, age FROM details LIMIT 10")?;
-            let rows = stmt.query_map([], |row| {
-                Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?))
-            })?;
+            let rows =
+                stmt.query_map([], |row| Ok((row.get::<_, i64>(0)?, row.get::<_, i64>(1)?)))?;
 
             for row in rows {
                 let (id, age) = row?;
@@ -57,7 +48,10 @@ fn main() -> Result<()> {
             }
         }
         Command::Insert { id, age } => {
-            let rows_affected = conn.execute("INSERT INTO details (id, age) VALUES (?1, ?2)", params![id, age])?;
+            let rows_affected = conn.execute(
+                "INSERT INTO details (id, age) VALUES (?1, ?2)",
+                params![id, age],
+            )?;
 
             if rows_affected == 1 {
                 println!("Insert operation completed successfully");
@@ -66,7 +60,10 @@ fn main() -> Result<()> {
             }
         }
         Command::Update { id, age } => {
-            let rows_affected = conn.execute("UPDATE details SET age = ?1 WHERE id = ?2", params![age, id])?;
+            let rows_affected = conn.execute(
+                "UPDATE details SET age = ?1 WHERE id = ?2",
+                params![age, id],
+            )?;
 
             if rows_affected == 1 {
                 println!("Update operation completed successfully");

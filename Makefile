@@ -19,18 +19,18 @@ serve:
 test:
 	# python -m pytest -vv --cov=main --cov=src tests/test_*.py
 	@echo "Testing all projects with cargo"
-	./test.sh
+	bash ./test.sh
 
 format:	
 	# black src/lib/*.py src/*.py tests/*.py
 	@echo "Formatting all projects with cargo"
-	./format.sh
+	bash ./format.sh
 
 lint:
 	# pylint --disable=R,C --ignore-patterns=test_.*?py src/lib/*.py src/*.py
 	@echo "Linting all projects with cargo"
 	@rustup component add clippy 2> /dev/null
-	./lint.sh
+	bash ./lint.sh
 
 run: 
 	cargo run
