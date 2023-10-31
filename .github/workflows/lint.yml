@@ -15,8 +15,4 @@ jobs:
           components: clippy, rustfmt
           override: true
       - name: Run clippy
-<<<<<<< HEAD
         run: make lint
-=======
-        run: make lint
->>>>>>> f02d4e8f34225e01b7669a762928823a0199ae74
