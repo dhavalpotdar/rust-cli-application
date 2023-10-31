@@ -1,4 +1,4 @@
-name: Clippy
+name: Run
 
 on: [push, pull_request]
 
@@ -14,9 +14,14 @@ jobs:
           profile: minimal
           components: clippy, rustfmt
           override: true
-      - name: Run clippy
+      - name: Lint
         run: make lint
-
+      - name: Test
+        run: make test
+      - name: Create Executable
+        run: make build 
+      - name: copy
+        run: make copy
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
         with:

@@ -11,7 +11,10 @@ install:
 	echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.bashrc
 
 build:
-	mdbook build data-eng-rust-tutorial
+	cargo build --release --manifest-path ./crud/Cargo.toml
+
+copy:
+	cp crud/target/release/crud ./"Rust_Binary"
 
 serve:
 	mdbook serve -p 8000 -n 127.0.0.1 data-eng-rust-tutorial 
