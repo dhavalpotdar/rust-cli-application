@@ -13,7 +13,7 @@ install:
 build:
 	cargo build --release --manifest-path ./crud/Cargo.toml
 
-copy:
+publish:
 	cp crud/target/release/crud ./"Rust_Binary"
 
 serve:
