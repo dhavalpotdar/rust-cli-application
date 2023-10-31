@@ -3,10 +3,10 @@ install:
 		pip install -r requirements.txt
 
 	cargo install mdbook
-	#install node
-	#curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-	#sudo apt-get install -y nodejs
-	#npm install -g @githubnext/github-copilot-cli
+#install node
+#curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+#sudo apt-get install -y nodejs
+#npm install -g @githubnext/github-copilot-cli
 	
 	echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.bashrc
 
@@ -14,18 +14,18 @@ build:
 	cargo build --release --manifest-path ./crud/Cargo.toml
 
 publish:
-	cp crud/target/release/crud ./
+	cp crud/target/release/crud ./"Binary"
 
 serve:
 	mdbook serve -p 8000 -n 127.0.0.1 data-eng-rust-tutorial 
 
 test:
-	# python -m pytest -vv --cov=main --cov=src tests/test_*.py
+# python -m pytest -vv --cov=main --cov=src tests/test_*.py
 	@echo "Testing all projects with cargo"
 	bash ./test.sh
 
 format:	
-	# black src/lib/*.py src/*.py tests/*.py
+# black src/lib/*.py src/*.py tests/*.py
 	@echo "Formatting all projects with cargo"
 	bash ./format.sh
 
@@ -44,9 +44,10 @@ release:
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile
 
-refactor: format lint
+refactor: 
+	format lint
 
 deploy:
-	#deploy goes here
+#deploy goes here
 		
 all: format lint test run
