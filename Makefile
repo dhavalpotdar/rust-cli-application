@@ -14,7 +14,7 @@ build:
 	cargo build --release --manifest-path ./crud/Cargo.toml
 
 publish:
-	cp crud/target/release/crud .
+	cp crud/target/release/crud ./
 
 serve:
 	mdbook serve -p 8000 -n 127.0.0.1 data-eng-rust-tutorial 
