@@ -20,5 +20,15 @@ jobs:
         run: make test
       - name: Create Executable
         run: make build 
+        working-directory: crud
       - name: Publish Artifact
-        run: make publish
+        uses: actions/upload-artifact@v2
+        with:
+          name: crud_binary
+          path: crud/target/release/
+  
+  
+  
+  
+  
+  

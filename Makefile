@@ -11,7 +11,7 @@ install:
 	echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.bashrc
 
 build:
-	cargo build --release --manifest-path ./crud/Cargo.toml
+	cargo build --release
 
 publish:
 	cp crud/target/release/crud ./"Binary"
