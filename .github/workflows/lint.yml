@@ -18,9 +18,14 @@ jobs:
         run: make lint
       - name: Test
         run: make test
-      - name: Create Executable
-        run: make release 
+      # - name: Create Executable
+      #   run: make release 
+      #   working-directory: crud
+
+      - name: Build optimized binary
+        run: cargo build --release
         working-directory: crud
+
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
         with:
