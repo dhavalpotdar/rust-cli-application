@@ -10,7 +10,7 @@ install:
 	
 	echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.bashrc
 
-build:
+release:
 	cargo build --release --manifest-path ./crud/Cargo.toml
 
 publish:
@@ -37,9 +37,6 @@ lint:
 
 run: 
 	cargo run
-
-release:
-	cargo build --release
 
 container-lint:
 	docker run --rm -i hadolint/hadolint < Dockerfile

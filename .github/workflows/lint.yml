@@ -19,7 +19,7 @@ jobs:
       - name: Test
         run: make test
       - name: Create Executable
-        run: make build 
+        run: make release 
         working-directory: crud
       - name: Publish Artifact
         uses: actions/upload-artifact@v2
