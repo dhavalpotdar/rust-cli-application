@@ -3,15 +3,15 @@ install:
 		pip install -r requirements.txt
 
 	cargo install mdbook
-#install node
-#curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
-#sudo apt-get install -y nodejs
-#npm install -g @githubnext/github-copilot-cli
+	#install node
+	#curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - &&\
+	#sudo apt-get install -y nodejs
+	#npm install -g @githubnext/github-copilot-cli
 	
 	echo 'eval "$(github-copilot-cli alias -- "$0")"' >> ~/.bashrc
 
 build:
-	cargo build --release
+	cargo build --release --manifest-path ./crud/Cargo.toml
 
 publish:
 	cp crud/target/release/crud ./"Binary"
